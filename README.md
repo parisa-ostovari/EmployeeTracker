@@ -26,7 +26,7 @@ Run ```node server.js``` to start the application
 ## Questions
 If you have any questions or would like to view my other projects, please use the contact information below:
 
-<a href="https://github.com/parisa-ostovari">Github</a>
+<a href="https://github.com/parisa-ostovari">GitHub</a>
 
 <a href="mailto:parisaostovari@gmail.com">Email</a> 
 
