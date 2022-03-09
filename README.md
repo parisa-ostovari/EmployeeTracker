@@ -18,7 +18,7 @@ Run ```npm install``` to install all dependencies. MySQL server is also required
 ## Usage
 Run ```node server.js``` to start the application
 
-### Dependencies
+## Dependencies
 - [mysql](https://www.npmjs.com/package/mysql)
 - [inquirer](https://www.npmjs.com/package/inquirer)
 - [console.table](https://www.npmjs.com/package/console.table) 
