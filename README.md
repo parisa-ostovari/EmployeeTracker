@@ -6,7 +6,6 @@ This command line interface application allows the user to view and edit an empl
 <a href="https://drive.google.com/file/d/1sSYr1uJa2AGRzgQINKx8EsoeWwoHGBvP/view">Demo Video Walkthrough</a>
 
 ## Table of Contents
----
   - [Installation](#installation)
   - [Usage](#usage)
   - [Dependencies](#dependencies)
@@ -14,21 +13,17 @@ This command line interface application allows the user to view and edit an empl
   - [License](#license)
  
 ## Installation
----
 Run ```npm install``` to install all dependencies. MySQL server is also required for this application, run ```schema.sql``` and ```seed.sql``` to set the database and seed the table.  
 
 ## Usage
----
 Run ```node server.js``` to start the application
 
 ### Dependencies
----
 - [mysql](https://www.npmjs.com/package/mysql)
 - [inquirer](https://www.npmjs.com/package/inquirer)
 - [console.table](https://www.npmjs.com/package/console.table) 
 
 ## Questions
----
 If you have any questions or would like to view my other projects, please use the contact information below:
 
 <a href="https://github.com/parisa-ostovari">Github</a>
@@ -36,7 +31,6 @@ If you have any questions or would like to view my other projects, please use th
 <a href="mailto:parisaostovari@gmail.com">Email</a> 
 
 ## License
----
 This project is covered under the following license:
 
 MIT License
