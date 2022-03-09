@@ -16,7 +16,7 @@ VALUES
     ('Lawyer', 190000, 3),
     ('Legal Team Lead', 250000, 3),
     ('Sales Manager', 80000, 4),
-    ('Sales Prtson', 100000, 4);
+    ('Sales Person', 100000, 4);
 
 INSERT INTO employee(first_name, last_name, role_id, manager_id)
 VALUES

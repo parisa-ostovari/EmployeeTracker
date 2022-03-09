@@ -1,6 +1,5 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-
 const db = require('./db');
 require('console.table');
 
@@ -11,6 +10,7 @@ function init() {
 }
 
 function mainPage() {
+
     inquirer.prompt([{
         name: 'choices',
         type: 'list',
@@ -55,84 +55,95 @@ function mainPage() {
         });
 }
 
-
 function viewAllDepartments() {
     db.getDepartments().then(([depts]) => {
         console.table(depts)
     }).then(() => mainPage())
 }
 
-function viewRoles(){
+function addDepartment() {
+    inquirer.prompt([
+        {
+            name: 'name',
+            message: 'What is the name of the department?'
+        }
+    ]).then(res => {
+        let name = res;
+        db.createDepartment(name)
+            .then(() => console.log(`${name.name} department has been added`))
+            .then(() => mainPage())
+    })
+}
+
+function viewRoles() {
     db.getRoles().then(([roles]) => {
         console.table(roles)
     }).then(() => mainPage())
 }
-function viewAllEmployees(){
+
+function viewAllEmployees() {
     db.getEmployees().then(([emp]) => {
         console.table(emp)
     }).then(() => mainPage())
-}    
+}
 
-function addEmployee(){
-    
-    db.getRoles().then(([roles])=>{
-        const roleChoices =  roles.map(({id, title})=>({
+function addEmployee() {
+    db.getRoles().then(([roles]) => {
+        const roleChoices = roles.map(({ id, title }) => ({
             name: title,
             value: id
         }))
-
         inquirer.prompt([
             {
-                type: 'input', 
-                name: 'first', 
-                message: 'what is the first name'
-            }, 
+                type: 'input',
+                name: 'first',
+                message: 'What is the employees first name'
+            },
             {
-                type: 'input', 
-                name: 'last', 
-                message: 'what is the last name'
-            }, 
+                type: 'input',
+                name: 'last',
+                message: 'What is the employees last name'
+            },
             {
                 type: 'list',
-                name: ' roles', 
-                message: 'what is the employees role?',
+                name: 'roles',
+                message: 'What is the employees role?',
                 choices: roleChoices
             }
-        ]).then((res)=>{
-            const firstName= res.first;
-            const lastName =  res.last;
+        ]).then((res) => {
+            const firstName = res.first;
+            const lastName = res.last;
             const role = res.roles
 
-            db.getEmployees().then(([emps])=>{
-                const employeeChoices =  emps.map(({id, first_name, last_name})=>({
-                    name: `${first_name} ${last_name}`, 
+            db.getEmployees().then(([emps]) => {
+                const employeeChoices = emps.map(({ id, first_name, last_name }) => ({
+                    name: `${first_name} ${last_name}`,
                     value: id
                 }))
 
-                employeeChoices.unshift({name: 'None', value: null})
+                employeeChoices.unshift({ name: 'None', value: null })
 
                 inquirer.prompt([
                     {
                         type: 'list',
                         name: 'manager_id',
-                        message: 'Who is this employees manager?', 
+                        message: 'Who is this employees manager?',
                         choices: employeeChoices
                     }
-                ]).then((data)=>{
+                ]).then((data) => {
                     let employee = {
                         first_name: firstName,
-                        last_name: lastName, 
-                        role_id: role, 
+                        last_name: lastName,
+                        role_id: role,
                         manager_id: data.manager_id
                     }
 
                     db.createEmployee(employee)
-                }).then(()=> mainPage())
-
+                })
+                    .then(() => console.log(`${firstName} ${lastName} has been added to the database`))
+                    .then(() => mainPage())
             })
         })
-
-
-
     })
 }
+
